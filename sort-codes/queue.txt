@@ -1,0 +1,77 @@
+## golang实现的简单队列
+## 2018.02.24
+
+		
+一个节点
+	type node struct{
+		data interface{} 
+		next *node // 包含的下一个节点的值
+	}
+一个队列---双向
+	type Queue struct{
+		count int //队列的长度
+		head *node // 当前节点的上一个节点
+		tail *node // 当前节点的下一个节点
+	}
+		
+一个安全的队列
+	type SafeQueue struct{
+		snyc.Mutex
+		q *Queue
+	}
+	
+	
+获取队列的长度
+	func(q *Queue)Len()int{
+		return q.count
+	}
+创建一个新的队列
+	func New()*Queue{
+		return &Queue{}
+	}
+入队操作
+	func InQueue(q *Queue)(value interface{}){
+	
+		newNode:=&node{data:value}
+		
+		if q.head==nil{ // 表示队列为空--当前节点为头结点
+			q.head=newNode
+			q.tail=newNode
+		}else{ // 不是头节点
+			q.tail.Next=newNode
+			q.tail=newNode
+		}
+		
+		q.count++ 
+	}
+出对操作
+	func OutQueue(q *Queue)interface{}{
+	
+	// 表示是一个空的队列
+		if q.head==nil{ 
+			return nil
+		}
+		
+		// 让头结点指向队列的第一个元素
+		n:=q.head
+		q.head=n.next
+		
+		 //这个判断是否队列为空。也就是队列中只有一个元素
+		if q.head==nil{
+			q.tail=nil
+		}
+			
+		q.count--
+		return  n.data
+	}
+	
+获取队列首部元素
+func(q *Queue)GetQueueFirstEle()interface{}{
+	n:=q.head
+	if n==nil || n.data==nil{
+		return nil
+	}
+	naw
+	return n.data
+}
+	
