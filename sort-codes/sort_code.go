@@ -136,8 +136,43 @@ data := []int{1, 3, 2, 8, 5}
 			return
 		}
 
-4、插入排序(稳定排序)
+4、插入排序(稳定排序--内部比较)
 	定义：插入排序就是每一步都将一个待排数据按其大小插入到已经排序的数据中的适当位置，直到全部插入完毕。
+	自己的理解：也就是从这个数组的第二个元素开始。
+		依次和前面的那个数进行比较。比前边的数大的话,就原地不动。
+								比前边的数小，这两个数就交换位置(将前面的数往后移动一位)
+	func insert_sort(data []int) []int {
+
+		for j := 1; j < len(data); j++ {
+
+			i := j
+			for i-1 >= 0 && data[i] < data[i-1] {
+				data[i], data[i-1] = data[i-1], data[i]
+				i--
+			}
+
+		}
+		return data
+	}
+
+	//  推荐这种方式
+	func insert_sort2(data []int) []int {
+
+		for i := 1; i < len(data); i++ {
+			key := data[i]
+			j := i - 1
+
+			for j >= 0 && data[j] > key {
+				data[j+1] = data[j]
+				j--
+			}
+			data[j+1] = key
+
+		}
+
+		return data
+	}
+
 二、查找
 	1、二分查找
 	印象中的二分查找的基础好像是对于已经排序好的数组。
