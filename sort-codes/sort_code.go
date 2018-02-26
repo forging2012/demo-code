@@ -77,8 +77,13 @@ data := []int{1, 3, 2, 8, 5}
 		① 分解 -- 将当前区间一分为二，即求分裂点 mid = (low + high)/2;
 		② 求解 -- 递归地对两个子区间a[low...mid] 和 a[mid+1...high]进行归并排序。递归的终结条件是子区间长度为1。
 		③ 合并 -- 将已排序的两个子区间a[low...mid]和 a[mid+1...high]归并为一个有序的区间a[low...high]。
+
+理解：
+	就是不等的分成两部分切片。直至左边的切片和右边的切片长度都为1，然后返回。
+程序把返回的左切片和右切片进行排序。不停地重复。
+也就是一个类似汉诺塔的问题。
 		func merge_sort(array []int) []int {
-			l := len(array)
+			l := len(array) // 如果数组长度为1,递归结束,否则再次将数组等分(也就是判断递归是否结束)
 			if l == 1 {
 				return array
 			}
@@ -90,9 +95,7 @@ data := []int{1, 3, 2, 8, 5}
 			return sort(left, right)
 		}
 
-		/*
-			自上而下进行排序
-		*/
+		// 自上而下进行排序
 		func sort(left, right []int) (result []int) {
 
 			i, j := 0, 0
