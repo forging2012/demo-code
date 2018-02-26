@@ -30,21 +30,35 @@
 		return &Queue{}
 	}
 入队操作
-	func InQueue(q *Queue)(value interface{}){
-	
-		newNode:=&node{data:value}
-		
-		if q.head==nil{ // 表示队列为空--当前节点为头结点
-			q.head=newNode
-			q.tail=newNode
-		}else{ // 不是头节点
-			q.tail.Next=newNode
-			q.tail=newNode
+	1.入队操作的步骤
+		第一步：首先创建一个节点
+		第二步：判断当前队列是否为空(抑或判断当前节点是否是头结点)
+		第三步：队列中元素的数量加1
+	2.演示代码
+		func InQueue(q *Queue)(value interface{}){
+
+			newNode:=&node{data:value}
+
+			if q.head==nil{ // 表示队列为空--当前节点为头结点
+				q.head=newNode
+				q.tail=newNode
+			}else{ // 不是头节点
+				q.tail.Next=newNode
+				q.tail=newNode
+			}
+
+			q.count++ 
 		}
-		
-		q.count++ 
-	}
+	
+
+	
 出对操作
+	1.出对操作的步骤
+		第一步：判断队列是否为空(如果为空,则直接返回nil)
+		第二步：改变头结点的位置(出对操作,弹出的是第一个头结点的,这时候头结点往后移动一位)
+		第三步：检查第二步(删除一个元素之后,队列是否为空)
+		第四步：队列的数量减少一个
+	2.出对操作的演示代码
 	func OutQueue(q *Queue)interface{}{
 	
 	// 表示是一个空的队列
@@ -71,7 +85,6 @@ func(q *Queue)GetQueueFirstEle()interface{}{
 	if n==nil || n.data==nil{
 		return nil
 	}
-	naw
 	return n.data
 }
 	
