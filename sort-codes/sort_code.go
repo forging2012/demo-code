@@ -238,6 +238,26 @@ data := []int{1, 3, 2, 8, 5}
 			}
 		}
 	}
+	/*
+		这是基于第一种方式的,每次直接从每一组的第二个元素开始排序
+	*/
+	func shellSort2(array []int, n int) []int {
+		var j, step int
+
+		for step = n / 2; step > 0; step /= 2 {
+			for j = step; j < n; j++ {
+				tmp := array[j]
+				k := j - step
+				for k >= 0 && array[k] > tmp {
+					array[k+step] = array[k]
+					k -= step
+				}
+				array[k+step] = tmp
+			}
+		}
+
+		return array
+	}
 
 二、查找
 	1、二分查找
