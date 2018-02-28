@@ -11,6 +11,10 @@
 参考网址：
 	http://www.cnblogs.com/UnGeek/p/5645534.html
 
+维基百科：
+	https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8Fhttps://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F
+只需要更换最后几个排序的名字就可以查看其它排序方法
+
 排序算法的稳定性
 	通俗地讲就是能保证排序前2个相等的数其在序列的前后位置顺序和排序后它们两个的前后位置顺序相同。
 	在简单形式化一下，如果Ai = Aj，Ai原来在位置前，排序后Ai还是要在Aj位置前。
