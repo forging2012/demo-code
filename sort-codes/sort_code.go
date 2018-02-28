@@ -190,6 +190,55 @@ data := []int{1, 3, 2, 8, 5}
 		}
 		return data
 	}
+6、希尔排序(内部排序--不稳定排序)
+	定义：将无序数组分割为若干个子序列，子序列不是逐段分割的，而是相隔特定的增量的子序列，对各个子序列进行插入排序；
+		然后再选择一个更小的增量，再将数组分割为多个子序列进行排序......
+		最后选择增量为1，即使用直接插入排序，使最终数组成为有序。
+	参考网址：
+		http://www.cnblogs.com/skywang12345/p/3597597.html#a1--这个分开写了
+	/*
+		one:也就是按照一定的步长进行分组,然后对每一个分组进行插入排序。
+		two:重复上述步骤。
+		three:最后以步长为1进行插入排序
+	*/
+
+	// data:待排序的数组
+	// n:待排序的数组长度
+	func shell_sort1(data []int, n int) []int {
+
+		var i, step int
+		for step = n / 2; step > 0; step /= 2 { // 总共有几个step
+			// 单独对某一组进行排序
+			for i = 0; i < step; i++ { // 这里也是我之前没有用到过,把99个数分成两组,这样每一组都有49个数,最多多的数用步长为1进行插入排序
+				group_srot(data, n, i, step)
+			}
+		}
+		return data
+	}
+
+	/*
+		对同一个分组内元素进行插入排序
+		array:待排序的数组
+		n:数组的长度
+		step:表示步长(每次间隔的距离)
+		i:代表数组的起始长度
+	*/
+	func group_srot(array []int, n, i, step int) {
+
+		// 对同一组内的元素进行排序,内循环是对某个数进行排序。外层循环移动数组的下一个元素
+		for j := i + step; j < n; j += step {
+			if array[j] < array[j-step] { // 这个判断可有可无,不影响程序的运行.但是多了这一个判断.对于tmp,k,array[k+step]的赋值,避免无用的赋值,即array[j]>array[j-step]的情况
+				tmp := array[j]
+				k := j - step
+				for k >= 0 && array[k] > tmp {
+					array[k+step] = array[k]
+					k -= step
+				}
+				array[k+step] = tmp
+			}
+		}
+	}
+
 二、查找
 	1、二分查找
 	印象中的二分查找的基础好像是对于已经排序好的数组。
