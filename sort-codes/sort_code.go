@@ -240,19 +240,22 @@ data := []int{1, 3, 2, 8, 5}
 	}
 	/*
 		这是基于第一种方式的,每次直接从每一组的第二个元素开始排序
+		参考网址：http://blog.csdn.net/morewindows/article/details/6668714
 	*/
 	func shellSort2(array []int, n int) []int {
 		var j, step int
 
-		for step = n / 2; step > 0; step /= 2 {
-			for j = step; j < n; j++ {
-				tmp := array[j]
-				k := j - step
-				for k >= 0 && array[k] > tmp {
-					array[k+step] = array[k]
-					k -= step
+		for step = n / 2; step > 0; step /= 2 { // 首先分组
+			for j = step; j < n; j++ { // 从数组的第step个元素开始
+				if array[j]<array[j-step]{ // 每个元素与自己数组内的数据进行直接插入排序---(这半部分就是直接插入排序)
+					tmp := array[j]
+					k := j - step
+					for k >= 0 && array[k] > tmp {
+						array[k+step] = array[k]
+						k -= step
+					}
+					array[k+step] = tmp
 				}
-				array[k+step] = tmp
 			}
 		}
 
