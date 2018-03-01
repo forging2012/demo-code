@@ -5,9 +5,9 @@
 	插入排序、冒泡排序、归并排序
 不稳定排序
 	已实现：
-		快速排序、选择排序	
+		快速排序、选择排序、希尔排序
 	未实现：
-		希尔排序(今天下班看看，然后实现一个)、堆排序
+		堆排序
 参考网址：
 	http://www.cnblogs.com/UnGeek/p/5645534.html
 
@@ -178,21 +178,20 @@ data := []int{1, 3, 2, 8, 5}
 	找到之后,然后和第一个进行交换。（每次找到一个最小元素，就把被找到的元素和最小元素的坐标互换）
 
 	// 选择排序
-	func select_sort(data []int) []int {
-
-		for i := 0; i < len(data)-1; i++ {
-
-			key := i
-			for j := i + 1; j < len(data); j++ {
-				if data[j] < data[key] {
-					key = j
+	func test_select_sort(array []int, n int) []int {
+		for i := 0; i < n-1; i++ { // 外循环控制循环次数
+			index := i                   // 记录最小元素的索引
+			for j := i + 1; j < n; j++ { // 内循环用于找出最小元素,并和第一个进行交换
+				if array[j] < array[index] {
+					index = j
 				}
 			}
-			if key != i {
-				data[i], data[key] = data[key], data[i]
+			// 判断找到最小元素的索引和找到数组中的索引是否相同
+			if index != i {
+				array[i], array[index] = array[index], array[i]
 			}
 		}
-		return data
+		return array
 	}
 6、希尔排序(内部排序--不稳定排序)
 	定义：将无序数组分割为若干个子序列，子序列不是逐段分割的，而是相隔特定的增量的子序列，对各个子序列进行插入排序；
