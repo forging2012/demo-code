@@ -13,7 +13,81 @@ func Test_Find_Element(T *testing.T) {
 	fmt.Println(index)
 }
 
+
+
+
+
+// 斐波那契查找算法
+func Fibonacci_search(array []int, n, key int) int {
+
+	low := 0
+	high := n
+	k := 0
+
+	F := FibonacciArray(20)
+	for n > F[k]-1 { // 计算n在斐波那契数列中的位置
+		k++
+	}
+	// 将数列填满
+	for i := n; i < F[k]-1; i++ {
+		//array[i] = array[n]
+		array = append(array, i)
+		array[len(array)-1] = array[n]
+	}
+
+	for low <= high {
+		mid := low + F[k-1] - 1
+		if key < array[mid] {
+			high = mid - 1
+			k--
+		} else {
+			if key > array[mid] {
+				low = mid + 1
+				k = k - 2
+			} else {
+				if mid <= n {
+					return mid
+				}
+				return n
+			}
+		}
+	}
+
+	return -1
+}
+
+// 产生斐波那契数组
+func FibonacciArray(n int) []int {
+
+	result := make([]int, 0)
+
+	if n < 2 {
+		switch n {
+		case 0:
+			result = append(result, 0)
+			return result
+		default:
+			result = append(result, []int{0, 1}...)
+			return result
+		}
+	}
+
+	result = append(result, []int{0, 1}...)
+
+	for i := 2; i < n; i++ {
+		result = append(result, result[i-1]+result[i-2])
+	}
+
+	return result
+}
+
+
 // 差值查找---二分查找的改进版本,每次并不一定是要求折半
+/*
+	差值算法的时间复杂度也是o(n)，但是对于表长比较大,而关键字分布又比较均匀的查找表来说，
+差值查找算法的平均性能比折半查找要好的多。(这个也是差值查找的使用场景)。
+	也不知道下面这个求rate和mid的公式是怎么算出来的。
+*/
 func difference_search(array []int, n int) int {
 
 	low := 0
