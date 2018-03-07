@@ -77,10 +77,12 @@ data := []int{1, 3, 2, 8, 5}
 			}
 		}
 
+		// 比较左半部分的数组
 		if low-1 > start {
 			QuickSort(data, start, low-1)
 		}
 
+		// 比较右半部分的数组
 		if high+1 < end {
 			QuickSort(data, high+1, end)
 		}
