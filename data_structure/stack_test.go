@@ -1,6 +1,8 @@
 ## 队列--golang简易实现
 ## 2018.3.8
 
+定义：栈是线性表的一种特殊结构,只能从表的固定一端对数据进行插入和删除操作。
+	在栈中可以对其操作的那一端称为"栈顶",被封死的那一端称为“栈底”
 
 
 type Element struct {
@@ -14,7 +16,7 @@ type Stack struct {
 }
 
 // Append 向栈中添加元素
-func (s *Stack) Append(v interface{}) bool {
+func (s *Stack) Push(v interface{}) bool {
 
 	if v == nil {
 		return false
@@ -36,20 +38,21 @@ func (s *Stack) Append(v interface{}) bool {
 }
 
 // Delete 删除栈顶元素
-func (s *Stack) Delete() bool {
+func (s *Stack) Pop() interface{} {
 	// 队列为空
 	if s == nil {
 		return false
 	}
 
+	tmp := s.top
 	// 改变栈顶指针的位置
-	s.top = s.top.next
+	s.top = tmp.next
 	s.count--
-	return true
+	return tmp.data
 }
 
 // GetData 获取栈顶的数据
-func (s *Stack) GetData() interface{} {
+func (s *Stack) GetTopData() interface{} {
 
 	if s == nil {
 		return nil
