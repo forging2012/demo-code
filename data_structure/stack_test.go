@@ -65,3 +65,20 @@ func (s *Stack) GetCount() int {
 	return s.count
 }
 
+// IsEmpty:栈是否为空
+func (s *Stack) IsEmpty() bool {
+	if s == nil {
+		return true
+	}
+	return s.count == 0
+}
+
+// IsFull:判断这个栈是否为满
+func (s *Stack) IsFull() bool {
+	if s == nil {
+		return false
+	}
+
+	return s.count == s.maxSize
+}
+
