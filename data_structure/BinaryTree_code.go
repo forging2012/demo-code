@@ -8,6 +8,11 @@
 参考网址:
 		http://blog.csdn.net/skh2015java/article/details/79242356
 
+
+
+对于二叉树的操作,它和递归就是仅仅关联在一起的,包括添加、删除一个节点、获取最值和全部数据。
+
+
 type BinaryTree struct {
 	data  int         // 代表当前节点存储的值
 	left  *BinaryTree // 代表左子树
