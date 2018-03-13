@@ -54,9 +54,12 @@ func (this *BinaryTree) Contains(containValue int) bool {
 	}
 
 }
+
+// 比较节点的值是否是比配的值
 func (this *BinaryTree) comapreTo(value int) int {
 	return this.data - value
 }
+
 
 // Remove:移除元素
 func (this *BinaryTree) Remove(value int) *BinaryTree {
@@ -65,18 +68,36 @@ func (this *BinaryTree) Remove(value int) *BinaryTree {
 		return nil
 	}
 
+	result := this.comapreTo(value)
+
+	if result < 0 {
+		this.left = this.left.Remove(value)
+	} else if result > 0 {
+		this.right = this.right.Remove(value)
+	} else if this.left != nil && this.right != nil {
+		this.data = this.right.FindMin()
+		this.right = this.right.Remove(this.data)
+	} else if this.left != nil {
+		this = this.left
+	} else {
+		this = this.right
+	}
+
 	return this
 }
+
 
 // FindMax:查找最大元素
 func (this *BinaryTree) FindMax() int {
 
+	// 判断当前二叉树是否为空
 	if this == nil {
 		fmt.Println("Empty BinaryTree")
 		return -1
 	}
 
-	if this.right == nil {
+	// 因为我二叉树默认都是已经排好序的,右子树>根节点>左子树,所以找最大值的话,就是查找右子树
+	if this.right == nil {//如果右子树为空,那么直接范围当前节点的头结点就可以了
 		return this.data
 	} else {
 		return this.right.FindMax()
@@ -88,14 +109,14 @@ func (this *BinaryTree) FindMaxNode() *BinaryTree {
 
 	if this.right != nil {
 		for this.right != nil { // 这里利用for循环,不停地查找根节点右边的元素,直到右边的元素不存在,然后跳出循环.
-			this = this.right
+			this = this.right  // 也就是不停地递归,直到找到最右边的那个节点
 		}
 	}
 
 	return this
 }
 
-// FindMin:查找最小元素
+// FindMin:查找最小元素----道理同上面找到左子树的最大元素
 func (this *BinaryTree) FindMin() int {
 
 	if this == nil {
@@ -111,7 +132,7 @@ func (this *BinaryTree) FindMin() int {
 
 }
 
-// FindMinNode:查找最小节点
+// FindMinNode:查找最小节点----道理同上面找到左子树的最大节点
 func (this *BinaryTree) FindMinNode() *BinaryTree {
 
 	if this.left != nil {
@@ -128,8 +149,9 @@ func (this *BinaryTree) GetAlls() []int {
 	if this == nil {
 		return []int{}
 	}
-
-	return []int{}
+	
+	values := []int{}
+	return appendValue(values, this)
 }
 
 func appendValue(result []int, tree *BinaryTree) []int {
