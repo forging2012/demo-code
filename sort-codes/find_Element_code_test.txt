@@ -1,7 +1,7 @@
-## 查找代码
-## 2018.3.6
+// 查找代码
+// 2018.3.6
 
-func Test_Find_Element(T *testing.T) {
+func  Test_Find_Element(T *testing.T) {
 
 	array := []int{5, 3, 8, 0, 1}
 	array = select_sort(array, len(array))
