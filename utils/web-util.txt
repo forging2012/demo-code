@@ -1,0 +1,10 @@
+content:下面的网址是学习相关算法的时候,参考网址
+createdAt:2018.09.18
+
+  kmp算法
+    1、一个外国大佬讲的(对于next数组的求解说的很详细--同时对kmp算法的匹配又有了一个说明)
+        https://www.bilibili.com/video/av3246487?from=search&seid=13088577609353125983
+    2、kmp的入门博客
+        http://www.cnblogs.com/yjiyjige/p/3263858.html#undefined
+    3、kmp对于next数组详解
+        https://www.cnblogs.com/tangzhengyue/p/4315393.html
