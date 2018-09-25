@@ -1,8 +1,8 @@
 package demo_code
 
 import (
+	"demo-code/utils"
 	"fmt"
-	"stest/demo-code/utils"
 	"testing"
 )
 
