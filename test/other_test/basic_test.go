@@ -1,7 +1,11 @@
 package other
 
 import (
+	"crypto/md5"
+	"crypto/sha1"
+	"encoding/hex"
 	"fmt"
+	"io"
 	"reflect"
 	"testing"
 	"time"
@@ -58,4 +62,20 @@ func TestQQ(t *testing.T) {
 		fmt.Println("hello ", name, "your age is ", age)
 	}
 	a("tom", "18")
+}
+
+func TestMD5Encode(t *testing.T) {
+	m := md5.New()
+	s := "helloadfadfasdadfadfadsfaasdfasdfa"
+	io.WriteString(m, s)
+	bt := m.Sum(nil)
+	fmt.Println(hex.EncodeToString(bt))
+}
+
+func TestSha1Encode(t *testing.T) {
+	s := sha1.New()
+	io.WriteString(s, "helldfdfaskdfjalksdfjalasfasdo")
+	s.Sum(nil)
+	fmt.Println(s)
+	fmt.Println(hex.EncodeToString(s.Sum(nil)), len(hex.EncodeToString(s.Sum(nil))))
 }
