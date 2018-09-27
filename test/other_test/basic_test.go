@@ -3,6 +3,7 @@ package other
 import (
 	"crypto/md5"
 	"crypto/sha1"
+	"encoding/base64"
 	"encoding/hex"
 	"fmt"
 	"io"
@@ -76,6 +77,48 @@ func TestSha1Encode(t *testing.T) {
 	s := sha1.New()
 	io.WriteString(s, "helldfdfaskdfjalksdfjalasfasdo")
 	s.Sum(nil)
-	fmt.Println(s)
-	fmt.Println(hex.EncodeToString(s.Sum(nil)), len(hex.EncodeToString(s.Sum(nil))))
+	//fmt.Println(s)
+	//fmt.Println(hex.EncodeToString(s.Sum(nil)), len(hex.EncodeToString(s.Sum(nil))))
+	enStr := hex.EncodeToString(s.Sum(nil))
+	fmt.Println("encodeStr=", enStr)
+	byt, err := hex.DecodeString(enStr)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	fmt.Println(byt, string(byt))
+}
+
+func TestSwitchDemo(t *testing.T) {
+	num := 40
+
+	ok := GetBoolean(num)
+	fmt.Println(ok)
+}
+
+func GetBoolean(num int) (ok bool) {
+	switch {
+	case num < 20:
+		fmt.Println("num<20")
+		ok = true
+	case num < 50:
+		fmt.Println("num<50")
+		ok = true
+	}
+
+	return
+}
+
+type St struct {
+	Name string
+	Age  int
+}
+
+func (this *St) Play() {
+	return
+}
+
+func TestBase64(t *testing.T) {
+	str := "你好"
+	fmt.Println(base64.StdEncoding.EncodeToString([]byte(str)))
 }
