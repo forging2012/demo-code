@@ -7,7 +7,9 @@ import (
 	"encoding/hex"
 	"fmt"
 	"io"
+	"net/url"
 	"reflect"
+	"strings"
 	"testing"
 	"time"
 )
@@ -121,4 +123,26 @@ func (this *St) Play() {
 func TestBase64(t *testing.T) {
 	str := "你好"
 	fmt.Println(base64.StdEncoding.EncodeToString([]byte(str)))
+}
+func TestJson(t *testing.T) {
+
+	msg := "hello"
+
+	msg = strings.Replace(msg, "l", "-1", -1)
+	fmt.Println(msg)
+}
+func TestParseIP(t *testing.T) {
+	ip := "http://www.baidu.com"
+	raw, err := url.Parse(ip)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	prams := url.Values{}
+	prams.Add("name", "tom")
+	prams.Add("age", "19")
+	raw.RawQuery = prams.Encode()
+
+	fmt.Println(raw.String())
 }
