@@ -68,11 +68,23 @@ func TestQQ(t *testing.T) {
 }
 
 func TestMD5Encode(t *testing.T) {
+	s := "manan"
+
+	fmt.Println(md5First(s))
+	fmt.Println(md5Second([]byte(s)))
+}
+
+func md5First(c string) string {
 	m := md5.New()
-	s := "helloadfadfasdadfadfadsfaasdfasdfa"
-	io.WriteString(m, s)
+	io.WriteString(m, c)
 	bt := m.Sum(nil)
-	fmt.Println(hex.EncodeToString(bt))
+	return hex.EncodeToString(bt)
+}
+
+func md5Second(c []byte) string {
+	h := md5.New()
+	h.Write(c)
+	return fmt.Sprintf("%x", h.Sum(nil))
 }
 
 func TestSha1Encode(t *testing.T) {
