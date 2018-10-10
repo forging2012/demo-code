@@ -16,10 +16,10 @@ const (
 )
 
 var (
-	osClient, err = GetOss()
+	osClient, err = getOss()
 )
 
-func GetOss() (client *oss.Client, err error) {
+func getOss() (client *oss.Client, err error) {
 	client, err = oss.New(OssEndPoint,
 		OssAccessKeyId,
 		OssAccessKeySecret)

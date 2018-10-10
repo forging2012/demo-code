@@ -8,21 +8,6 @@ import (
 	"testing"
 )
 
-func TestInitOss(t *testing.T) {
-	client, err := utils.GetOss()
-	if err != nil {
-		t.Error(err)
-		return
-	}
-	fmt.Println(client.Config.AccessKeyID)
-	res, err := client.GetBucketInfo(utils.OssBucketName)
-	if err != nil {
-		t.Error(err)
-		return
-	}
-	fmt.Println(res.BucketInfo)
-}
-
 func TestOssPutFile(t *testing.T) {
 	bkt, err := utils.GetOssBucket(utils.OssBucketName)
 	err = bkt.PutObjectFromFile("oss_put_manan_test/test1", "./test1.txt")
