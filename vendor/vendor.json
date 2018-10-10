@@ -9,6 +9,24 @@
 			"revisionTime": "2018-08-15T10:47:33Z"
 		},
 		{
+			"checksumSHA1": "tzgz+xKCcBQCAGSXXsmLACrD1UA=",
+			"path": "github.com/aliyun/aliyun-oss-go-sdk",
+			"revision": "ddc87ec2145f324f91257266e657cd7fa0ff1c8c",
+			"revisionTime": "2018-09-18T11:43:45Z"
+		},
+		{
+			"checksumSHA1": "GsbvqF3wo0LP4Bnfrguq+Yw86cA=",
+			"path": "github.com/aliyun/aliyun-oss-go-sdk/oss",
+			"revision": "ddc87ec2145f324f91257266e657cd7fa0ff1c8c",
+			"revisionTime": "2018-09-18T11:43:45Z"
+		},
+		{
+			"checksumSHA1": "S4H/8vIAmrfzzfy1g/idLv4Lhbc=",
+			"path": "github.com/aliyun/aliyun-oss-go-sdk/sample",
+			"revision": "ddc87ec2145f324f91257266e657cd7fa0ff1c8c",
+			"revisionTime": "2018-09-18T11:43:45Z"
+		},
+		{
 			"checksumSHA1": "0EhLvZ6Og9HYqJtCc2Dzs1EgM30=",
 			"path": "github.com/bitly/go-simplejson",
 			"revision": "0c965951289cce37dec52ad1f34200fefc816777",
