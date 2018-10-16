@@ -9,10 +9,10 @@ import (
 
 // oss constants
 const (
-	OssEndPoint        = "xxxxxxx"
-	OssAccessKeyId     = "yyyyyy"
-	OssAccessKeySecret = "zzzzzz"
-	OssBucketName      = "qa-game"
+	OssEndPoint        = "adsfasuncs.com"
+	OssAccessKeyId     = "Ldafd2L"
+	OssAccessKeySecret = "os8asdfasdfWl0UY"
+	OssBucketName      = "saew"
 )
 
 var (
@@ -70,7 +70,16 @@ func PutFilesToOSS(dir_path string) (err error) {
 		// 找到oss_key
 		idx := strings.Index(f, path.Base(dir_path))
 		oss_key := string(([]rune(f)[idx:]))
-		err = bkt.PutObjectFromFile(oss_key, f)
+
+		if strings.HasSuffix(f, ".DS_Store") {
+			continue
+		}
+
+		b := fmt.Sprint("wxtools/", oss_key)
+
+		fmt.Println("oss_key=", b, "  f=", f)
+
+		err = bkt.PutObjectFromFile(b, f)
 		if err != nil {
 			fmt.Println(err)
 			continue

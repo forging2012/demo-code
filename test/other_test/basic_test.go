@@ -8,11 +8,21 @@ import (
 	"fmt"
 	"io"
 	"net/url"
+	"os"
 	"reflect"
 	"strings"
 	"testing"
 	"time"
 )
+
+func TestCreateFile(t *testing.T) {
+	fileName := "./homeworkTest/hello.txt"
+	f, err := os.Create(fileName)
+	if err != nil {
+		t.Error(err)
+	}
+	fmt.Println(f)
+}
 
 func TestReflect(t *testing.T) {
 	var a string

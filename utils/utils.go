@@ -22,7 +22,7 @@ func GetAllFiles(dirPth string) (files []string, err error) {
 		} else {
 			files = append(files, dirPth+PthSep+fi.Name())
 			// 过滤指定格式
-			//ok := strings.HasSuffix(fi.Name(), ".go")
+			//ok := strings.HasSuffix(fi.Name(), ".DS_Store")
 			//if !ok {
 			//	files = append(files, dirPth+PthSep+fi.Name())
 			//}

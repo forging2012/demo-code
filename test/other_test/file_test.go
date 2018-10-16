@@ -27,3 +27,17 @@ func TestGetPwd(t *testing.T) {
 	}
 	fmt.Println(dir)
 }
+
+func TestFileExist(t *testing.T) {
+	fmt.Println(Exists("homeworkTest"))
+}
+func Exists(path string) bool {
+	_, err := os.Stat(path) //os.Stat获取文件信息
+	if err != nil {
+		if os.IsExist(err) {
+			return true
+		}
+		return false
+	}
+	return true
+}
