@@ -10,10 +10,17 @@ import (
 	"net/url"
 	"os"
 	"reflect"
+	"sort"
 	"strings"
 	"testing"
 	"time"
 )
+
+func TestMap(t *testing.T) {
+	data := []int{3, 7, 1, 0, 2}
+	sort.Ints(data)
+	fmt.Println(data)
+}
 
 func TestCreateFile(t *testing.T) {
 	fileName := "./homeworkTest/hello.txt"
@@ -22,6 +29,11 @@ func TestCreateFile(t *testing.T) {
 		t.Error(err)
 	}
 	fmt.Println(f)
+}
+
+func TestNumber(t *testing.T) {
+	fmt.Println(8 / 4)
+	fmt.Println(8 % 4)
 }
 
 func TestReflect(t *testing.T) {

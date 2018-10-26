@@ -9,10 +9,10 @@ import (
 
 // oss constants
 const (
-	OssEndPoint        = "adsfasuncs.com"
-	OssAccessKeyId     = "Ldafd2L"
-	OssAccessKeySecret = "os8asdfasdfWl0UY"
-	OssBucketName      = "saew"
+	OssEndPoint        = "adsfasdf"
+	OssAccessKeyId     = "asdf"
+	OssAccessKeySecret = "asdafda"
+	OssBucketName      = "adadsf"
 )
 
 var (

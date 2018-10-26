@@ -15,12 +15,39 @@ var (
 	logger = logging.GetLogger()
 )
 
+func TestGetVoiceList(t *testing.T) {
+	client, err := getClient()
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	list, err := client.ListVoices()
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	for _, v := range list.Voices {
+		fmt.Println(v.Customization, v.Gender)
+	}
+}
+
+func Test2(t *testing.T) {
+	client, err := getClient()
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	fmt.Println(client.ListVoices())
+
+}
+
 func getClient() (client text_to_speech.Client, err error) {
 
 	config := watson.Config{
 		Credentials: watson.Credentials{
-			Username: "xxxx",
-			Password: "xxxx",
+			Username: "05e4ae2e-a288-4c0b-a45b-1c411322d0f5",
+			Password: "tpukwaROXtZA",
 		},
 	}
 
@@ -32,6 +59,9 @@ func getClient() (client text_to_speech.Client, err error) {
 
 	return
 }
+
+//  <voice-transformation type="Custom" rate="slow">' + item.get('word') + '</voice-transformation>
+
 func TestTextToSpeech(t *testing.T) {
 	client, err := getClient()
 	if err != nil {
@@ -39,7 +69,9 @@ func TestTextToSpeech(t *testing.T) {
 		return
 	}
 	text := "What are these?"
-	data, err := client.Synthesize(text, "en-US_AllisonVoice", "audio/mp3", "")
+	slow := fmt.Sprintf("<voice-transformation type=\"Custom\" rate=\"x-slow\">%s</voice-transformation>", text)
+	fmt.Println(slow)
+	data, err := client.Synthesize(slow, "en-US_AllisonVoice", "audio/mp3", "")
 	if err != nil {
 		t.Error(err)
 		return
@@ -119,7 +151,6 @@ func TestParseExcelFile(t *testing.T) {
 
 				err = TextToSpeech(content, fmt.Sprint(sonPath, "/", row.Cells[voiceIndx-1].String()))
 				if err != nil {
-					fmt.Println(err)
 					logger.Error(err)
 					return
 				}
@@ -199,13 +230,13 @@ func TextToSpeech(content, fileName string) (err error) {
 
 	data, err := client.Synthesize(content, "en-US_AllisonVoice", "audio/mp3", "")
 	if err != nil {
-		fmt.Println(err)
+		logger.Error(err)
 		return
 	}
 
 	out, err := os.Create(fmt.Sprint(fileName, ".mp3"))
 	if err != nil {
-		fmt.Println(err)
+		logger.Error(err)
 		return
 	}
 	defer out.Close()
