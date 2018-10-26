@@ -36,6 +36,5 @@ func GetAllFiles(dirPth string) (files []string, err error) {
 			files = append(files, temp1)
 		}
 	}
-
 	return files, nil
 }

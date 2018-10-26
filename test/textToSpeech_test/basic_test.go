@@ -62,13 +62,13 @@ func getClient() (client text_to_speech.Client, err error) {
 
 //  <voice-transformation type="Custom" rate="slow">' + item.get('word') + '</voice-transformation>
 
-func TestTextToSpeech(t *testing.T) {
+func TestBasicTextToSpeech(t *testing.T) {
 	client, err := getClient()
 	if err != nil {
 		logger.Error(err)
 		return
 	}
-	text := "What are these?"
+	text := "Are you ok？"
 	slow := fmt.Sprintf("<voice-transformation type=\"Custom\" rate=\"x-slow\">%s</voice-transformation>", text)
 	fmt.Println(slow)
 	data, err := client.Synthesize(slow, "en-US_AllisonVoice", "audio/mp3", "")
@@ -93,7 +93,7 @@ func TestTextToSpeech(t *testing.T) {
 }
 
 // excel 解析
-func TestParseExcelFile(t *testing.T) {
+func TestCreateVoiceFormExcel(t *testing.T) {
 	fp := "./L1.xlsx"
 	f, err := xlsx.OpenFile(fp)
 	if err != nil {
@@ -217,18 +217,14 @@ func Exists(path string) bool {
 	return true
 }
 
-func MakeVoiceData() (err error) {
-	return
-}
-
 func TextToSpeech(content, fileName string) (err error) {
 	client, err := getClient()
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-
-	data, err := client.Synthesize(content, "en-US_AllisonVoice", "audio/mp3", "")
+	slow := fmt.Sprintf("<voice-transformation type=\"Custom\" rate=\"x-slow\">%s</voice-transformation>", content)
+	data, err := client.Synthesize(slow, "en-US_AllisonVoice", "audio/mp3", "")
 	if err != nil {
 		logger.Error(err)
 		return
