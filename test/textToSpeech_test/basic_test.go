@@ -46,8 +46,8 @@ func getClient() (client text_to_speech.Client, err error) {
 
 	config := watson.Config{
 		Credentials: watson.Credentials{
-			Username: "05e4ae2e-a288-4c0b-a45b-1c411322d0f5",
-			Password: "tpukwaROXtZA",
+			Username: "bbdf80a1-bb6f-4595-919f-ddc91b3f152c",
+			Password: "H0ByuPPEAlH0",
 		},
 	}
 
