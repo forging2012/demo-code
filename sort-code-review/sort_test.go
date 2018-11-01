@@ -8,8 +8,28 @@ import (
 func TestHello(t *testing.T) {
 	array := []int{6, 4, 8, 1, 0, 2}
 	//bubble_sort(array)
-	quick_sort(array, 0, len(array)-1)
+	//quick_sort(array, 0, len(array)-1)
+	insert_sort(array)
 	fmt.Println(array)
+}
+
+/*
+插入排序
+	理解：分为两个数组，假设第一个元素是已经排好序的数组
+	从第二个元素开始，依次和前面的进行比较,比之前小的就继续和前边的进行比较
+*/
+func insert_sort(data []int) {
+	for i := 1; i < len(data); i++ { // 从第一个元素开始进行比较
+		key := data[i] // 找出标杆元素
+		j := i
+
+		for j > 0 && data[j-1] > key {
+			data[j] = data[j-1] // 如果前一个元素比较比目标元素小的话,那么就将前一个元素向后移动一位
+			j = j - 1
+		}
+		data[j] = key // 为目标元素找到指定位置
+	}
+	return
 }
 
 /*
