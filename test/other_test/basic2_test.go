@@ -3,12 +3,49 @@ package other
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"math"
+	"net/http"
 	"strconv"
 	"strings"
 	"testing"
 )
+
+func TestDownloadFromURL(t *testing.T) {
+	filePath := "./hello.mp3"
+	url := "https://qa-game.oss-cn-beijing.aliyuncs.com/wxtools/hello.mp3"
+	_, err := DownLoadFileFromUrl(filePath, url)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	fmt.Println("success")
+}
+
+func DownLoadFileFromUrl(filePath, url string) (body []byte, err error) {
+	// download file
+	resp, err := http.Get(url)
+	if err != nil {
+		fmt.Println("get file data error", err)
+		return
+	}
+
+	defer resp.Body.Close()
+	body, err = ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("read file data err", err)
+		return
+	}
+
+	err = ioutil.WriteFile(filePath, body, 0644)
+	if err != nil {
+		fmt.Println("write data to file error", err)
+		return
+	}
+
+	return body, nil
+}
 
 func TestNumConvert(t *testing.T) {
 	hex := "AB"

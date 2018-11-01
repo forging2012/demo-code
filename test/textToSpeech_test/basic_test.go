@@ -68,10 +68,10 @@ func TestBasicTextToSpeech(t *testing.T) {
 		logger.Error(err)
 		return
 	}
-	text := "Are you ok？"
+	text := "hello"
 	slow := fmt.Sprintf("<voice-transformation type=\"Custom\" rate=\"x-slow\">%s</voice-transformation>", text)
 	fmt.Println(slow)
-	data, err := client.Synthesize(slow, "en-US_AllisonVoice", "audio/mp3", "")
+	data, err := client.Synthesize(text, "en-US_AllisonVoice", "audio/mp3", "")
 	if err != nil {
 		t.Error(err)
 		return
