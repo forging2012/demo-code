@@ -2,15 +2,60 @@ package sort_code_review
 
 import (
 	"fmt"
+	"sort"
 	"testing"
 )
 
 func TestHello(t *testing.T) {
 	array := []int{6, 4, 8, 1, 0, 2}
+
+	fmt.Println(BinarySearch(array, 100))
+
 	//bubble_sort(array)
 	//quick_sort(array, 0, len(array)-1)
-	insert_sort(array)
-	fmt.Println(array)
+	//insert_sort(array)
+	//select_sort(array)
+
+	//fmt.Println(array)
+}
+
+// 二分查找,前提是已经排好序的数组
+func BinarySearch(data []int, num int) (index int) {
+	sort.Ints(data)
+	min := 0
+	max := len(data) - 1
+	for min <= max {
+		mid := (min + max) / 2
+
+		if num > data[mid] {
+			min = mid + 1
+		} else if num < data[mid] {
+			max = mid - 1
+		} else {
+			index = mid
+			break
+		}
+	}
+	return -1
+}
+
+/*
+选择排序:就是从当前数组中找出最小的，然后放到第一位,
+接着找出次小的放到第二位
+*/
+func select_sort(data []int) {
+	for i := 0; i < len(data)-1; i++ {
+		min := i
+		for j := i + 1; j < len(data); j++ {
+			if data[j] < data[min] {
+				min = j
+			}
+		}
+
+		if min != i {
+			data[min], data[i] = data[i], data[min]
+		}
+	}
 }
 
 /*
