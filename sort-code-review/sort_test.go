@@ -9,7 +9,7 @@ import (
 func TestHello(t *testing.T) {
 	array := []int{6, 4, 8, 1, 0, 2}
 
-	fmt.Println(BinarySearch(array, 100))
+	//fmt.Println(BinarySearch(array, 100))
 
 	//bubble_sort(array)
 	//quick_sort(array, 0, len(array)-1)
@@ -17,6 +17,42 @@ func TestHello(t *testing.T) {
 	//select_sort(array)
 
 	//fmt.Println(array)
+	fmt.Println(merge_sort(array))
+}
+
+/*
+
+归并排序:---递归
+	就是将数组不停地划分,最后对两个数组进行排序!
+*/
+
+func merge_sort(data []int) (result []int) {
+	if len(data) == 1 {
+		result = data
+		return
+	}
+
+	mid := len(data) / 2
+	left := merge_sort(data[:mid])
+	right := merge_sort(data[mid:])
+	result = sort_arrays(left, right)
+	return
+}
+
+func sort_arrays(left, right []int) (result []int) {
+	i, j := 0, 0
+	for i < len(left) && j < len(right) { // 将两个数组逐个进行比较,将每个数组中较小的,添加到这个result数组中
+		if left[i] < right[j] {
+			result = append(result, left[i])
+			i++
+		} else {
+			result = append(result, right[j])
+			j++
+		}
+	}
+	result = append(result, left[i:]...)
+	result = append(result, right[j:]...) // 将剩余的数组中的元素,追加到result数组中
+	return
 }
 
 // 二分查找,前提是已经排好序的数组
