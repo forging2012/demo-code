@@ -17,7 +17,36 @@ func TestHello(t *testing.T) {
 	//select_sort(array)
 
 	//fmt.Println(array)
-	fmt.Println(merge_sort(array))
+	//fmt.Println(merge_sort(array))
+	shell_sort(array, len(array))
+	fmt.Println(array)
+}
+
+/*
+希尔排序:
+理解：就是对插入排序的升级版,与插入排序的不同之处在于,希尔排序会优先比较距离较远的元素
+希尔排序又称为缩小增量排序
+array=[]int{}
+n:=len(array)
+for step:=n/2;step>0;step=step/2{  将步长逐渐缩小,然后最后就是一个插入排序
+	在同一个步长内,将所有元素进行插入排序
+
+}
+
+*/
+
+func shell_sort(array []int, n int) {
+	for step := n / 2; step > 0; step = step / 2 { // 对步长进行操作
+		for i := 0; i < n; i += step { // 每次比较都是同一个步长的数组内的元素进行比较--这里进行的是插入排序
+			key := array[i]
+			j := i
+			for j > 0 && array[j-step] > key {
+				array[j] = array[j-step]
+				j -= step
+			}
+			array[j] = key
+		}
+	}
 }
 
 /*
