@@ -19,7 +19,7 @@ func TestHello(t *testing.T) {
 	//fmt.Println(array)
 	//fmt.Println(merge_sort(array))
 	shell_sort(array, len(array))
-	fmt.Println(array)
+	//fmt.Println(array)
 }
 
 /*
@@ -34,13 +34,12 @@ for step:=n/2;step>0;step=step/2{  将步长逐渐缩小,然后最后就是一�
 }
 
 */
-
 func shell_sort(array []int, n int) {
-	for step := n / 2; step > 0; step = step / 2 { // 对步长进行操作
+	for step := n / 2; step > 0; step = step / 2 { // 对步长进行操作-每次步长减半
 		for i := 0; i < n; i += step { // 每次比较都是同一个步长的数组内的元素进行比较--这里进行的是插入排序
 			key := array[i]
 			j := i
-			for j > 0 && array[j-step] > key {
+			for j > 0 && array[j-step] > key { // 从每一个步长数组的第二个元素开始排序,按照插入排序来做
 				array[j] = array[j-step]
 				j -= step
 			}
